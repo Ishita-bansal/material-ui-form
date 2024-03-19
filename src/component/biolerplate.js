@@ -41,20 +41,20 @@ const validationSchema = yup.object().shape({
     .required("Required*"),
 });
 
-function MyForm() {
+function Biolerplate() {
   const onSubmit = (values) => {
     console.log(values);
     console.log("formerrors", values.errors);
   };
 
-  const formik = useFormik({
+const formik = useFormik({
     initialValues: defaultvalues,
     onSubmit: onSubmit,
     validationSchema: validationSchema,
     enableReinitialize: true,
   });
 
-  const { values, handleSubmit, handleBlur, errors, touched, setFieldValue } =
+  const {getFieldProps, values, handleSubmit, handleBlur, errors, touched, setFieldValue } =
     formik;
   // console.log(errors);
   console.log("visited data", touched);
@@ -63,13 +63,12 @@ function MyForm() {
       <form className="contain" onSubmit={handleSubmit}>
         <TextField
           label="Name"
+          name="name"
           type="text"
           varient="outlined"
           fullWidth
           margin="normal"
-          values="values.name"
-          onChange={(e) => setFieldValue("name", e.target.value)}
-          onBlur={handleBlur}
+        {...getFieldProps('name')}  
         />
         {touched.name && errors.name ? (
           <p className="showerror">{errors.name}</p>
@@ -80,13 +79,12 @@ function MyForm() {
         )}
         <TextField
           label="Email"
+          name="email"
           type="email"
           varient="outlined"
           fullWidth
           margin="normal"
-          values="values.email"
-          onChange={(e) => setFieldValue("email", e.target.value)}
-          onBlur={handleBlur}
+          {...getFieldProps('email')}
         />
         {touched.email && errors.email ? (
           <p className="showerror">{errors.email}</p>
@@ -98,12 +96,11 @@ function MyForm() {
         <TextField
           label="Password"
           type="password"
+          name="password"
           varient="outlined"
           fullWidth
           margin="normal"
-          values="values.password"
-          onChange={(e) => setFieldValue("password", e.target.value)}
-          onBlur={handleBlur}
+          {...getFieldProps('password')}
         />
         {touched.password && errors.password ? (
           <p className="showerror">{errors.password}</p>
@@ -115,17 +112,16 @@ function MyForm() {
         <TextField
           label="Confirm Password"
           type="password"
+          name="confirmpass"
           varient="outlined"
           fullWidth
           margin="normal"
-          values="values.confirmpass"
-          onChange={(e) => setFieldValue("confirmpass", e.target.value)}
-          onBlur={handleBlur}
-        />
+          {...getFieldProps('confirmpass')}
+       />
         {touched.confirmpass && errors.confirmpass ? (
           <p className="showerror">{errors.confirmpass}</p>
         ) : (
-          <p style={{ visibility: "hidden" }} className="showerror">
+          <p style={{visibility: "hidden" }} className="showerror">
             password
           </p>
         )}
@@ -137,6 +133,7 @@ function MyForm() {
                 onChange={() => setFieldValue("checked", !values.checked)}
                 onBlur={handleBlur}
                 values="values.checked"
+                // {...getFieldProps('Checkbox')}
               />
             }
             label="I agree to the terms and conditions"
@@ -160,4 +157,4 @@ function MyForm() {
   );
 }
 
-export default MyForm;
+export default Biolerplate;
