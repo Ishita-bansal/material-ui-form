@@ -1,30 +1,30 @@
 .contain{
-     max-width:500px;
-     max-height:1000px;
-     background-color: aliceblue;
-     padding:30px;
-     border-radius:20px;
+    max-width:500px;
+    max-height:1000px;
+    background-color: aliceblue;
+    padding:30px;
+    border-radius:20px;
 }
 
 .formcontain{
-    background:linear-gradient(135deg, violet ,pink);
-    height:100vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+   background:linear-gradient(135deg, violet ,pink);
+   height:100vh;
+   display:flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .showerror{
-        color: red;
-        margin-left:25px;
-        font-size: 14px;
-        font-style: italic;
-        padding:0px;
-        margin:0px;
-        margin-bottom: 10px;
+       color: red;
+       margin-left:25px;
+       font-size: 14px;
+       font-style: italic;
+       padding:0px;
+       margin:0px;
+       margin-bottom: 10px;
 }
 
 .uibtn{
-    display:flex;
-    justify-content:flex-end;
+   display:flex;
+   justify-content:flex-end;
 }
