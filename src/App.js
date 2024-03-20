@@ -1,15 +1,7 @@
-// import MyForm from "./component/Myform";
-import Biolerplate from "./component/biolerplate";
-import Shortform from "./component/shortform";
-function App() {
-  return (
-    <div>
+import Router from "./router";
 
-      {/* <MyForm/> */}
-        {/* <Biolerplate/>  */}
-        <Shortform/>
-    </div>
-  );
+function App() {
+  return <Router />;
 }
 
 export default App;
