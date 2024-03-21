@@ -50,22 +50,23 @@ function Register() {
   const navigate = useNavigate();
   const onSubmit = (values) => {
     let storeddata = JSON.parse(localStorage.getItem("userData"));
+    console.log("data=",storeddata);
+
     let emailarray = storeddata?.map((obj) => {
       return obj.email;
     });
 
     if (emailarray?.includes(values.email)) {
       return (toast.error(TOAST_MESSAGE.EMAILCHECK))
-
-    } else {
+    }
+     else {
       let arr = [];
       if (storeddata === null) {
         arr.push(values);
       } else {
         arr = [...storeddata, values];
       }
-      console.log(storeddata);
-      console.log(arr);
+    
       localStorage.setItem("userData", JSON.stringify(arr));
       toast.success(TOAST_MESSAGE.REGISTER);
       navigate("/login");

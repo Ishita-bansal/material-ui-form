@@ -14,6 +14,7 @@ const PublicRoute = ({element}) =>{
 
 const Router = () => {
   return (
+    
     <BrowserRouter>
       <Routes>
         
