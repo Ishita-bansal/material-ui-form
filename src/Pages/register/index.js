@@ -9,6 +9,9 @@ import * as yup from "yup";
 import React from "react";
 import { ErrorHandle } from "../../component/index";
 import { useNavigate } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import { TOAST_MESSAGE } from "../../constants";
+
 
 const emailRegExp =
   /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -44,15 +47,29 @@ const validationSchema = yup.object().shape({
 });
 
 function Register() {
-
   const navigate = useNavigate();
   const onSubmit = (values) => {
-    console.log("Form values:", values);
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({...values,isLoggedIn:true})
-    );
-    navigate("/login");
+    let storeddata = JSON.parse(localStorage.getItem("userData"));
+    let emailarray = storeddata?.map((obj) => {
+      return obj.email;
+    });
+
+    if (emailarray?.includes(values.email)) {
+      return (toast.error(TOAST_MESSAGE.EMAILCHECK))
+
+    } else {
+      let arr = [];
+      if (storeddata === null) {
+        arr.push(values);
+      } else {
+        arr = [...storeddata, values];
+      }
+      console.log(storeddata);
+      console.log(arr);
+      localStorage.setItem("userData", JSON.stringify(arr));
+      toast.success(TOAST_MESSAGE.REGISTER);
+      navigate("/login");
+    }
   };
 
   const formik = useFormik({
@@ -141,8 +158,7 @@ function Register() {
 
         <div class="uibtn">
           <Button variant="contained" color="primary" type="submit">
-        
-          Register
+            Register
           </Button>
         </div>
       </form>
