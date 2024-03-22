@@ -37,7 +37,7 @@ function Login() {
     const userData = allUser?.find(
       (user) => user.email === values.email && user.password === values.password
     );
-
+    console.log(allUser);
     console.log("data=", userData);
     if (userData === undefined) {
       toast.error(TOAST_MESSAGE.LOGINCREDENTIAL);
